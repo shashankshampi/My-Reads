@@ -30,8 +30,7 @@ $ npm start
  The main page shows a control that allows users to move books between shelves. The control should be tied to each book instance.
 
 #### Search Page
- The search page has a search input field. As the user types into the search field, books that match the query are displayed on the page.
- Search results on the search page allow the user to select “currently reading”, “want to read”, or “read” to place the book in a certain shelf.
+ The search page has a search input field. As the user types into the search field, books that match the query are displayed on the page. You can add new book to any two of the category except the current reading. 
  When an item is categorized on the search page, and the user navigates to the main page, it appears on that shelf in the main page.
 
 ###### Any Issue regarding the same should be reported in issue section of github page.
