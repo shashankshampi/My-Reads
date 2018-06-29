@@ -8,5 +8,4 @@ const AddBook = () => {
         </div>
     )
 }
-
 export default AddBook

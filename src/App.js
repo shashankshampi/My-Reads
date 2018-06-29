@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import BookList from './BookList'
 import BookSearch from './Search'
-
 import './App.css'
+import BookList from './BookList'
 
 class BooksApp extends Component {
     render() {
@@ -15,5 +14,4 @@ class BooksApp extends Component {
         );
     }
 }
-
 export default BooksApp

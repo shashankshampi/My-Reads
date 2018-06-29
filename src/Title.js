@@ -12,6 +12,6 @@ Title.propTypes = {
     name: PropTypes.string.isRequired
     }
 Title.defaultProps = {
-    name: 'My Reads - Book Recording App'
+    name: 'My Reads - A Book Tracking App'
 }
 export default Title
