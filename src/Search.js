@@ -27,7 +27,7 @@ class Search extends Component {
     }// Vlist close
     
     ChangeSh  = (book, shelf) => {
-      const addedBook = ''
+      const addedBook = []
       BooksAPI.update(book, shelf).then(QList => {
           Object.keys(QList).forEach(shelf => { return QList[shelf].map(id => ({ id: id, shelf: shelf})).forEach(book => {
                 addedBook.push(book)
