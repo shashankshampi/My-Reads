@@ -18,20 +18,18 @@ class Search extends Component {
     Vlist = (e) => {
       const value = e.target.value
       if(value) {
-        BooksAPI.search(value).then(QList => {
-          if( QList.hasOwnProperty('error') || !QList ) {
+        BooksAPI.search(value).then(QL => {
+          if( QL.hasOwnProperty('error') || !QL )
             this.setState({ QList: [] })
-          } else this.setState({ QList: QList })  
+          else this.setState({ QList: QL })  
         })
       } else this.setState( { QList: [] })
     }// Vlist close
     
     ChangeSh  = (book, shelf) => {
-      const addedBook = []
-      BooksAPI.update(book, shelf)
-        .then(QList => {
-          Object.keys(QList).forEach(shelf => { return QList[shelf].map(id => ({ id: id, shelf: shelf}))
-              .forEach(book => {
+      const addedBook = ''
+      BooksAPI.update(book, shelf).then(QList => {
+          Object.keys(QList).forEach(shelf => { return QList[shelf].map(id => ({ id: id, shelf: shelf})).forEach(book => {
                 addedBook.push(book)
               })
             })

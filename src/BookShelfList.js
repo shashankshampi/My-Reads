@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
-import Shelf from './Shelf'
+import ShelfRecord from './ShelfRecord'
 import * as BooksAPI from './BooksAPI'
 
 class BookShelfList extends Component {
     state = {
-        books: []
+        bookQ: []
     }
     componentDidMount() {
         BooksAPI.getAll().then(b => {
-            this.setState({ books: b })
+            this.setState({ bookQ: b })
         })
     }
-
-    ChangeSh=(book, shelf) => {
-        let id = book.id
-        let cbook = [...this.state.books]
-        let iup = cbook.findIndex(book => book.id === id)
-        let updatedi = Object.assign({}, cbook[iup], {
-            shelf: shelf
-        });
+    ChangeSh=(book, shelfNm) => {
+        const { bookQ } = this.state
+        const uidx=bookQ.findIndex(b => b.id === book.id)
+        const budt=bookQ[uidx]
+        budt.shelf=shelfNm
         this.setState({
-            books: [...cbook.slice(0, iup), updatedi, 
-            ...cbook.slice(iup + 1)]
+            bookQ: [...bookQ.slice(0, uidx), budt, ...bookQ.slice(uidx+1)] 
         })
-        BooksAPI.update(book, shelf)
+        BooksAPI.update(book, shelfNm)
     }
+    
     render() {
-        const { books } = this.state
+        const { bookQ } = this.state
         let listc = [];
         let listw = [];
         let listr = [];
      //matching the required status of book
-      books.forEach(b => { 
+      bookQ.forEach(b => { 
         if(b.shelf==='currentlyReading')
            listc.push(b)
          
@@ -58,10 +55,10 @@ class BookShelfList extends Component {
         ]
       return(
         <div className="list-books-content">
-          { books.length > 0 ? (<div> {BookLst.map((shelf, index) => ( <Shelf key={index} title={shelf.Bookname} books={shelf.books} 
+          { bookQ.length > 0 ? (<div> {BookLst.map((shelf, index) => ( <ShelfRecord key={index} title={shelf.Bookname} books={shelf.books} 
 	    ChangeSh={this.ChangeSh }/>  
              ))} </div>)
-                : (<div className="loading">Please Wait...</div>)
+                : (<div className="loading">Loading Books Please Wait...</div>)
                 }
          </div>
         ) // return close
