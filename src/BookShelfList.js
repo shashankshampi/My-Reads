@@ -5,12 +5,8 @@ import * as BooksAPI from './BooksAPI'
 class BookShelfList extends Component {
     state = {
         bookQ: []
-    }
-    componentDidMount() {
-        BooksAPI.getAll().then(b => {
-            this.setState({ bookQ: b })
-        })
-    }
+     }
+    
     ChangeSh=(book, shelfNm) => {
         const { bookQ } = this.state
         const uidx=bookQ.findIndex(b => b.id === book.id)
@@ -21,7 +17,11 @@ class BookShelfList extends Component {
         })
         BooksAPI.update(book, shelfNm)
     }
-    
+    componentDidMount() {
+        BooksAPI.getAll().then(b => {
+            this.setState({ bookQ: b })
+        })
+        }
     render() {
         const { bookQ } = this.state
         let listc = [];
@@ -55,10 +55,10 @@ class BookShelfList extends Component {
         ]
       return(
         <div className="list-books-content">
-          { bookQ.length > 0 ? (<div> {BookLst.map((shelf, index) => ( <ShelfRecord key={index} title={shelf.Bookname} books={shelf.books} 
+          { bookQ.length > 0 ? (<div> {BookLst.map((sf, i) => ( <ShelfRecord key={i} title={sf.Bookname} books={sf.books} 
 	    ChangeSh={this.ChangeSh }/>  
              ))} </div>)
-                : (<div className="loading">Loading Books Please Wait...</div>)
+                : (<div className="loading">Loading Books Please Wait .......</div>)
                 }
          </div>
         ) // return close

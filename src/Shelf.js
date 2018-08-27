@@ -4,11 +4,6 @@ import Book from './Book'
 import PropTypes from 'prop-types'
 
 class Shelf extends Component {
-  static propTypes = {
-    ChangeSh : PropTypes.func.isRequired,
-    books: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
-};
 
   render() {
         const { title, books, ChangeSh  } = this.props
@@ -17,13 +12,18 @@ class Shelf extends Component {
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {books.map((book, index) => (
-                            <Book key={index} book={book} ChangeSh={ChangeSh } />
+                        {books.map((bk, i) => (
+                            <Book key={i} book={bk} ChangeSh={ChangeSh } />
                         ))}
                     </ol>
                 </div>
             </div>
         )
     }
+    static propTypes = {
+    ChangeSh : PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired
+};
 }
 export default Shelf
